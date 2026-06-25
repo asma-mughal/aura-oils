@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Leaf, Heart, Award, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
-
+import MainImage from '../assets/WhatsApp Image 2026-06-19 at 5.28.58 PM.jpeg'
 const values = [
   {
     icon: Leaf,
@@ -80,7 +80,7 @@ const About = () => {
             </div>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=800&auto=format&fit=crop"
+                src={MainImage}
                 alt="Natural oils and botanicals"
                 className="rounded-2xl shadow-medium"
               />
