@@ -48,7 +48,6 @@ const Checkout = () => {
   setIsSubmitting(true);
 
   try {
-    // 1. Create order in Supabase
     const orderResult = await createOrder.mutateAsync({
       subtotal,
       shipping: shippingCost,
@@ -69,7 +68,6 @@ const Checkout = () => {
         price: item.price,
       })),
     });
-    console.log(orderResult?.[0])
     await fetch(
       `https://zggakhdfiuzmsbjxbrqs.supabase.co/functions/v1/dynamic-endpoint`,
       {

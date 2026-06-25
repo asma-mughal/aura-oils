@@ -168,12 +168,12 @@ const Header = () => {
                 {previewResults.map((product) => (
                   <Link
                     key={product.id}
-                    to={`/products/${product.slug}`}
+                    to={`/products/${product?.id}`}
                     onClick={closeMenus}
                     className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors"
                   >
                     <img
-                      src={product.image || product.images?.[0] || "/placeholder.svg"}
+                      src={product.images?.[0] || "/placeholder.svg"}
                       alt={product.name}
                       className="h-10 w-10 rounded-md object-cover"
                     />

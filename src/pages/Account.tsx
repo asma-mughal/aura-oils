@@ -66,44 +66,52 @@ const Account = () => {
   };
 
   const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (registerData.password !== registerData.confirmPassword) {
-      toast({
-        title: "Passwords don't match",
-        description: "Please make sure your passwords match.",
-        variant: "destructive",
-      });
-      return;
-    }
+  if (registerData.password !== registerData.confirmPassword) {
+    toast({
+      title: "Passwords don't match",
+      description: "Please make sure your passwords match.",
+      variant: "destructive",
+    });
+    return;
+  }
 
-    if (registerData.password.length < 6) {
-      toast({
-        title: "Password too short",
-        description: "Password must be at least 6 characters.",
-        variant: "destructive",
-      });
-      return;
-    }
+  setIsAuthSubmitting(true);
 
-    setIsAuthSubmitting(true);
-    const { error } = await signUp(registerData.email.trim(), registerData.password, registerData.name.trim());
+  const { error } = await signUp(
+    registerData.email.trim(),
+    registerData.password,
+    registerData.name.trim()
+  );
 
-    if (error) {
-      toast({
-        title: "Registration failed",
-        description: error.message,
-        variant: "destructive",
-      });
-    } else {
-      toast({
-        title: "Account created!",
-        description: "Please check your email if confirmation is enabled, then sign in.",
-      });
-      setRegisterData({ name: "", email: "", password: "", confirmPassword: "" });
-    }
-    setIsAuthSubmitting(false);
-  };
+  if (error) {
+    toast({
+      title: "Registration failed",
+      description: error.message,
+      variant: "destructive",
+    });
+  } else {
+    await signIn(
+      registerData.email.trim(),
+      registerData.password
+    );
+
+    toast({
+      title: "Welcome!",
+      description: "Account created successfully.",
+    });
+
+    setRegisterData({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  }
+
+  setIsAuthSubmitting(false);
+};
 
   const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -290,13 +298,12 @@ const Account = () => {
                         <div className="text-right">
                           <p className="font-medium text-primary">{formatPrice(order.total)}</p>
                           <span
-                            className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${
-                              order.status === "delivered"
-                                ? "bg-green-100 text-green-700"
-                                : order.status === "cancelled"
-                                  ? "bg-red-100 text-red-700"
-                                  : "bg-amber-100 text-amber-700"
-                            }`}
+                            className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${order.status === "delivered"
+                              ? "bg-green-100 text-green-700"
+                              : order.status === "cancelled"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-amber-100 text-amber-700"
+                              }`}
                           >
                             {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                           </span>

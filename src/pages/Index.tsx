@@ -157,7 +157,7 @@ const Index = () => {
               </Link>
             </Button>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 stagger-children">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
             {productsLoading ? (
               Array.from({ length: 4 }).map((_, i) => (
                 <Skeleton key={i} className="aspect-[3/4] rounded-2xl" />
