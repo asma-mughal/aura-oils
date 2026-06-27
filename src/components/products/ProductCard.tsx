@@ -101,13 +101,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
 
       <div className="p-4">
-        <h3 className="font-serif text-lg font-medium leading-tight text-card-foreground line-clamp-1">
+        <h3 className="font-serif text-lg font-bold leading-tight text-card-foreground line-clamp-1">
           {product.name}
         </h3>
 
-        <p className="mt-1 text-sm text-muted-foreground">
-          {product.description}
-        </p>
+        
       </div>
     </Link>
   );

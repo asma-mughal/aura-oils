@@ -7,6 +7,7 @@ export interface ProductVariant {
   size: string;
   price: number | string;
   created_at: string | null;
+  images : string[] | null
 }
 
 export interface Product {
@@ -154,7 +155,7 @@ export const useProduct = (id: string) => {
 
       const { data: variants, error: variantsError } = await supabase
         .from("product_variants")
-        .select("id, product_id, size, price, created_at")
+        .select("id, product_id, size, price, created_at, images")
         .eq("product_id", product?.id )
         .order("created_at", { ascending: true });
 

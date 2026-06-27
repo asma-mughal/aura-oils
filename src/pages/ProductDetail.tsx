@@ -42,7 +42,6 @@ const ProductDetail = () => {
 
   const { data: product, isLoading } = useProduct(id || "");
   const { data: allProducts } = useProducts();
-
   const [selectedVariant, setSelectedVariant] = useState<string | undefined>();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -52,17 +51,20 @@ const ProductDetail = () => {
 
   const variants = product?.product_variants || [];
 
-  const images =
-    product?.images && product.images.length > 0
-      ? product.images
-      : ["/placeholder.svg"];
+  
 
   useEffect(() => {
     if (variants.length > 0 && !selectedVariant) {
       setSelectedVariant(variants[0].id);
     }
   }, [variants, selectedVariant]);
-
+    useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant", // or "auto"
+    });
+  }, []);
   if (isLoading) {
     return (
       <Layout>
@@ -108,7 +110,12 @@ const ProductDetail = () => {
 
   const benefits = splitText(product.key_benefits);
   const ingredients = splitText(product.ingredients);
-
+  const images =
+  currentVariant?.images && currentVariant.images.length > 0
+    ? currentVariant.images
+    : product?.images?.length
+    ? product.images
+    : ["/placeholder.svg"];
   const relatedProducts =
     allProducts
       ?.filter(
@@ -156,7 +163,6 @@ const ProductDetail = () => {
     handleAddToCart();
     navigate("/checkout");
   };
-  console.log(variants)
   return (
     <Layout>
       <div className="container py-8 md:py-12">

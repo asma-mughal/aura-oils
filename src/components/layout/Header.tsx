@@ -43,7 +43,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="bg-primary text-primary-foreground py-2 text-center text-sm">
         <p className="animate-fade-in">
-          🌿 100% Natural & Organic Products • 🚚 Delivery in 3–7 Days • 💳 Secure Checkout
+          🌿 100% Natural & Organic Products • 🚚 Delivery in 3–7 Days 
         </p>
       </div>
 

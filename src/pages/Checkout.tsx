@@ -31,7 +31,7 @@ const Checkout = () => {
     notes: "",
   });
 
-  const shippingCost = subtotal >= 5000 ? 0 : 200;
+  const shippingCost = subtotal >= 5000 ? 0 : 250;
   const total = subtotal + shippingCost;
 
   const formatPrice = (price: number) => `Rs. ${price.toLocaleString()}`;
@@ -269,22 +269,7 @@ const Checkout = () => {
                         Pay with cash when your order arrives
                       </p>
                     </Label>
-                  </div>
-                  <div className="flex items-center space-x-3 rounded-lg border p-4 cursor-pointer hover:border-primary transition-colors">
-                    <RadioGroupItem value="card" id="card" />
-                    <Label htmlFor="card" className="flex-1 cursor-pointer">
-                      <div className="flex items-center gap-2">
-                        <CreditCard className="h-5 w-5 text-muted-foreground" />
-                        <span className="font-medium">Credit/Debit Card</span>
-                        <span className="text-xs bg-muted px-2 py-0.5 rounded">
-                          Pay on delivery
-                        </span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-1">
-Pay by card when your order is delivered
-                      </p>
-                    </Label>
-                  </div>
+                  </div>  
                 </RadioGroup>
               </div>
             </div>

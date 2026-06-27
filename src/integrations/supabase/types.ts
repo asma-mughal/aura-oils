@@ -196,7 +196,8 @@ export type Database = {
           in_stock: boolean
           name: string
           price: number
-          product_id: string
+          product_id: string;
+          images?: string[];
         }
         Insert: {
           created_at?: string
