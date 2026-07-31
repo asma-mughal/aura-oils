@@ -37,7 +37,7 @@ const testimonials = [
     id: 3,
     name: "Ayesha Malik",
     rating: 5,
-    text: "Love the natural ingredients and the beautiful packaging. These oils have become a part of my daily routine.",
+    text: "Love the natural ingredients and the beautiful packaging. This oil have become a part of my daily routine.",
     location: "Islamabad",
   },
 ];
@@ -171,17 +171,6 @@ const Index = () => {
                 Explore our collection of pure and natural oils
               </p>
             </div>
-
-            <Button
-              variant="outline"
-              asChild
-              className="hidden md:flex"
-            >
-              <Link to="/products">
-                View All
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -208,13 +197,6 @@ const Index = () => {
             )}
           </div>
 
-          <div className="mt-8 text-center md:hidden">
-            <Button variant="outline" asChild>
-              <Link to="/products">
-                View All Products
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 
@@ -230,20 +212,8 @@ const Index = () => {
               <p className="mt-2 text-muted-foreground">
                 Our most loved products
               </p>
-            </div>
-
-            <Button
-              variant="outline"
-              asChild
-              className="hidden md:flex"
-            >
-              <Link to="/products">
-                View All
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            </div>  
           </div>
-
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProductsLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
@@ -270,13 +240,6 @@ const Index = () => {
             )}
           </div>
 
-          <div className="mt-8 text-center md:hidden">
-            <Button variant="outline" asChild>
-              <Link to="/products">
-                View All Products
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 
