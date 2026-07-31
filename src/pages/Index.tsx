@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -10,37 +11,16 @@ import {
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import ProductCard from "@/components/products/ProductCard";
+
 import {
   useFeaturedProducts,
   useProducts,
 } from "@/hooks/useProducts";
 
+
 import heroImage from "@/assets/hero-oils.jpg";
 import { Skeleton } from "@/components/ui/skeleton";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Sarah Ahmed",
-    rating: 5,
-    text: "The Miracle Hair Oil has completely transformed my hair! After just 2 weeks, I noticed significantly less hair fall.",
-    location: "Lahore",
-  },
-  {
-    id: 2,
-    name: "Fatima Khan",
-    rating: 5,
-    text: "I've tried many oils but nothing compares to Organics By Shahida. The quality is exceptional and results are visible.",
-    location: "Karachi",
-  },
-  {
-    id: 3,
-    name: "Ayesha Malik",
-    rating: 5,
-    text: "Love the natural ingredients and the beautiful packaging. This oil have become a part of my daily routine.",
-    location: "Islamabad",
-  },
-];
+import { useProductReviews } from "@/hooks/useProductReview";
 
 const features = [
   {
@@ -74,9 +54,15 @@ const Index = () => {
     isLoading: featuredProductsLoading,
   } = useFeaturedProducts();
 
+  const {
+    data: reviews = [],
+    isLoading: reviewsLoading,
+  } = useProductReviews();
+
   return (
     <Layout>
       {/* Hero Section */}
+
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -97,6 +83,7 @@ const Index = () => {
             <h1 className="font-serif text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
               Pure & Natural
               <br />
+
               <span className="text-primary">
                 Oils for You
               </span>
@@ -131,6 +118,7 @@ const Index = () => {
       </section>
 
       {/* Features */}
+
       <section className="border-y bg-muted/30">
         <div className="container py-8">
           <div className="grid gap-8 md:grid-cols-3">
@@ -159,6 +147,7 @@ const Index = () => {
       </section>
 
       {/* All Products */}
+
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
@@ -181,13 +170,15 @@ const Index = () => {
                   className="aspect-[3/4] rounded-2xl"
                 />
               ))
-            ) : products && products?.length ? (
-              products?.slice(0, 3).map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
-              ))
+            ) : products && products.length ? (
+              products
+                .slice(0, 3)
+                .map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                  />
+                ))
             ) : (
               <div className="col-span-full py-12 text-center">
                 <p className="text-muted-foreground">
@@ -196,11 +187,11 @@ const Index = () => {
               </div>
             )}
           </div>
-
         </div>
       </section>
 
       {/* Bestsellers */}
+
       <section className="bg-muted/30 py-16 md:py-24">
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
@@ -212,8 +203,9 @@ const Index = () => {
               <p className="mt-2 text-muted-foreground">
                 Our most loved products
               </p>
-            </div>  
+            </div>
           </div>
+
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProductsLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
@@ -239,11 +231,11 @@ const Index = () => {
               </div>
             )}
           </div>
-
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Dynamic Customer Reviews */}
+
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 text-center">
@@ -252,47 +244,110 @@ const Index = () => {
             </h2>
 
             <p className="mt-2 text-muted-foreground">
-              Trusted by thousands of happy customers
+              Real reviews from our customers
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="rounded-2xl border bg-card p-6 shadow-card"
-              >
-                <div className="flex gap-1">
-                  {[...Array(testimonial.rating)].map(
-                    (_, index) => (
+          {reviewsLoading ? (
+            <div className="grid gap-6 md:grid-cols-3">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="rounded-2xl border bg-card p-6"
+                >
+                  <Skeleton className="h-5 w-24" />
+
+                  <Skeleton className="mt-5 h-20 w-full" />
+
+                  <div className="mt-5 border-t pt-4">
+                    <Skeleton className="h-5 w-32" />
+
+                    <Skeleton className="mt-2 h-4 w-20" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : reviews.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-3">
+              {reviews.map((review) => (
+                <div
+                  key={review.id}
+                  className="flex h-full flex-col rounded-2xl border bg-card p-6 shadow-card"
+                >
+                  {/* Rating */}
+                  <div className="flex gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
                       <Star
-                        key={index}
-                        className="h-4 w-4 fill-amber text-amber"
+                        key={star}
+                        className={`h-4 w-4 ${star <= review.rating
+                            ? "fill-amber text-amber"
+                            : "text-muted-foreground"
+                          }`}
                       />
-                    )
+                    ))}
+                  </div>
+
+                  {/* Review */}
+                  {review.review ? (
+                    <p className="mt-4 leading-relaxed text-muted-foreground">
+                      "{review.review}"
+                    </p>
+                  ) : (
+                    <p className="mt-4 italic text-muted-foreground">
+                      Customer left a rating without a written review.
+                    </p>
                   )}
+
+                  {/* Customer - Always stays at bottom */}
+                  <div className="mt-auto pt-6">
+                    <div className="border-t pt-4">
+                      <p className="font-medium">
+                        {review.full_name || "Anonymous Customer"}
+                      </p>
+
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {new Date(review.created_at).toLocaleDateString(
+                          "en-PK",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed p-10 text-center">
+              <Star className="mx-auto h-8 w-8 text-muted-foreground" />
 
-                <p className="mt-4 leading-relaxed text-muted-foreground">
-                  "{testimonial.text}"
-                </p>
+              <h3 className="mt-4 font-medium">
+                No customer reviews yet
+              </h3>
 
-                <div className="mt-4 border-t pt-4">
-                  <p className="font-medium">
-                    {testimonial.name}
-                  </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Be the first customer to share your experience.
+              </p>
 
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+              <Button
+                variant="outline"
+                className="mt-5"
+                asChild
+              >
+                <Link to="/products">
+                  Explore Products
+                </Link>
+              </Button>
+            </div>
+          )}
         </div>
       </section>
 
       {/* CTA */}
+
       <section className="bg-primary py-16 md:py-24">
         <div className="container text-center">
           <h2 className="font-serif text-3xl font-semibold text-primary-foreground md:text-4xl">
