@@ -97,10 +97,10 @@ const Index = () => {
 
             <div className="flex flex-wrap gap-4">
               <Button variant="hero" asChild>
-                <Link to="/products">
+                <a href="#products">
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                </a>
               </Button>
 
               <Button
@@ -146,9 +146,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* All Products */}
 
-      <section className="py-16 md:py-24">
+      <section id="products" className="py-16 md:py-24">
         <div className="container">
           <div className="mb-10 flex items-end justify-between">
             <div>

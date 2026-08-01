@@ -226,7 +226,7 @@ const ProductDetail = () => {
             className="mt-6"
             asChild
           >
-            <Link to="/collections">
+            <Link to="/">
               Browse Products
             </Link>
           </Button>
@@ -443,14 +443,6 @@ const ProductDetail = () => {
 
           <span>/</span>
 
-          <Link
-            to="/collections"
-            className="hover:text-primary transition-colors"
-          >
-            Collections
-          </Link>
-
-          <span>/</span>
 
           <span className="text-foreground truncate">
             {product.name}

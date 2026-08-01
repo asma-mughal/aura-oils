@@ -33,7 +33,7 @@ const CartDrawer = () => {
             </div>
             <p className="text-muted-foreground">Your cart is empty</p>
             <Button variant="hero" onClick={() => setIsCartOpen(false)} asChild>
-              <Link to="/collections">Start Shopping</Link>
+              <Link to="/">Start Shopping</Link>
             </Button>
           </div>
         ) : (

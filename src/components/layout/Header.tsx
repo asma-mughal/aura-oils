@@ -210,11 +210,6 @@ const Header = () => {
             >
               Home
             </Link>
-
-            {/* =================================================
-                SHOP DROPDOWN
-            ================================================= */}
-
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
                 Shop

@@ -115,7 +115,7 @@ const Checkout = () => {
             Add some products to your cart before checking out.
           </p>
           <Button variant="hero" className="mt-6" asChild>
-            <Link to="/collections">Browse Products</Link>
+            <Link to="/">Browse Products</Link>
           </Button>
         </div>
       </Layout>
@@ -127,7 +127,7 @@ const Checkout = () => {
       <div className="container py-8 md:py-12">
         <div className="mb-8">
           <Link
-            to="/collections"
+            to="/"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-4"
           >
             <ArrowLeft className="h-4 w-4" />

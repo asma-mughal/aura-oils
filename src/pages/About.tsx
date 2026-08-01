@@ -75,7 +75,7 @@ const About = () => {
                 </p>
               </div>
               <Button variant="hero" asChild>
-                <Link to="/collections">Explore Our Products</Link>
+                <Link to="/">Explore Our Products</Link>
               </Button>
             </div>
             <div className="relative">
@@ -135,7 +135,7 @@ const About = () => {
               and skin with our premium organic oils.
             </p>
             <Button variant="secondary" size="lg" className="mt-6" asChild>
-              <Link to="/collections">Shop Now</Link>
+              <Link to="/">Shop Now</Link>
             </Button>
           </div>
         </div>

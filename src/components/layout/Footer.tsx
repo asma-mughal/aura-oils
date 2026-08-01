@@ -82,9 +82,6 @@ const Footer = () => {
               <Link to="/" onClick={handleLinkClick} className="text-sm text-muted-foreground hover:text-primary">
                 Home
               </Link>
-              <Link to="/collections" onClick={handleLinkClick} className="text-sm text-muted-foreground hover:text-primary">
-                Shop All
-              </Link>
               <Link to="/about" onClick={handleLinkClick} className="text-sm text-muted-foreground hover:text-primary">
                 About Us
               </Link>
