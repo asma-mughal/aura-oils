@@ -365,7 +365,7 @@ const Index = () => {
             className="mt-8"
             asChild
           >
-            <Link to="/products">
+            <Link to="/">
               Shop Now
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

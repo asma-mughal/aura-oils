@@ -383,10 +383,6 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* =====================================================
-            SEARCH
-        ===================================================== */}
-
         {isSearchOpen && (
           <div className="animate-fade-in border-t py-4">
 
