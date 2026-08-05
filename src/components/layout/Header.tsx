@@ -224,7 +224,7 @@ const Header = () => {
 
                 <DropdownMenuItem asChild>
                   <Link
-                    to="/products"
+                    to="/"
                     className="w-full font-medium"
                   >
                     All Products
@@ -520,7 +520,7 @@ const Header = () => {
             {/* All Products */}
 
             <Link
-              to="/products"
+              to="/"
               className="block py-2 text-sm font-medium"
               onClick={closeMenus}
             >
